@@ -1,0 +1,81 @@
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+
+local Window = Library.CreateLib("Prison Life", "BloodTheme")
+
+local Main = Window:NewTab("Main")
+local Guns = Main:NewSection("Made by Oreki")
+Guns:NewButton("M9", "M9", function()
+    local args = {[1] = workspace.Prison_ITEMS.giver.M9.ITEMPICKUP}
+    workspace.Remote.ItemHandler:InvokeServer(unpack(args))
+end)
+
+Guns:NewButton("Remington", "Remington", function()
+    local args = {[1] = workspace.Prison_ITEMS.giver:FindFirstChild("Remington 870").ITEMPICKUP}
+    workspace.Remote.ItemHandler:InvokeServer(unpack(args))
+end) 
+
+Guns:NewButton("AK-47", "Gives AK-47", function()
+    local A_1 = game:GetService("Workspace")["Prison_ITEMS"].giver["AK-47"].ITEMPICKUP
+    local Event = game:GetService("Workspace").Remote.ItemHandler
+    Event:InvokeServer(A_1)
+end) 
+
+Guns:NewButton("Destroy Doors", "Destroys all doors", function()
+    game.Workspace.Doors:Destroy()
+end) 
+
+Guns:NewButton("Kill Aura", "use at own risk", function()
+    while wait () do
+        for i, e in pairs(game.Players:GetChildren()) do
+                              if e ~= game.Players.LocalPlayer then
+                                  local meleeEvent = game:GetService("ReplicatedStorage").meleeEvent
+                                  meleeEvent:FireServer(e)
+                                  
+                              end end end 
+end) 
+
+local Player = Window:NewTab("Player")
+local LocalPlayer = Player:NewSection("Client sided")
+
+LocalPlayer:NewSlider("WalkSpeed", "Changes Walkspeed", 200, 16, function(v) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+end)
+
+LocalPlayer:NewSlider("Jump Power", "Changes Jump Power", 200, 50, function(v) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+end)
+
+LocalPlayer:NewToggle("Noclip", "Makes u noClip", function(state)
+    if state then
+        local s = loadstring(game:HttpGet(("https://raw.githubusercontent.com/RobloxScripts52/noclip/main/noclip.lua"), true))()
+    else
+        print("Toggle Off")
+    end
+end)
+
+local Teleport = Window:NewTab("Teleport")
+local TpSection = Teleport:NewSection("Teleports")
+
+TpSection:NewButton("Prison Yard", "Teleports to prison yard", function()
+    Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(798.999756, 95.1383057, 2540.5, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+end)
+
+TpSection:NewButton("Town", "Teleports to town parking lot", function()
+    Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-476.983185, 51.0750122, 1761.70032, -0.782586694, 0, -0.622541666, 0, 1, 0, 0.622541666, 0, -0.782586694)
+end)
+
+TpSection:NewButton("Criminal Hideout", "Teleports to Criminal Spawn", function()
+    Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-920.510803, 92.2271957, 2138.27002, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+end)
+
+TpSection:NewButton("Police Spawn", "Teleports to Police Spawn", function()
+    Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(857.08313, 97.1001282, 2302.84131, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+end)
+
+local Misc = Window:NewTab("Misc")
+local MiscSection = Misc:NewSection("Misc")
+
+
+
+
